@@ -60,15 +60,18 @@ public class FoodInteraction : MonoBehaviour
     {
         // Save the starting position
         Vector3 startingPosition = foodTransform.position;
-        Vector3 endPosition;
+        
+        Transform fedToad;
         if (startingPosition.x > 0)
         {
-            endPosition = toadRight.position;
+            fedToad = toadRight;
         }
         else
         {
-            endPosition = toadLeft.position;
+            fedToad = toadLeft;
         }
+
+        Vector3 endPosition = fedToad.position;
         
         float elapsedTime = 0f;
         while (elapsedTime < throwDuration && foodTransform != null)
@@ -90,6 +93,7 @@ public class FoodInteraction : MonoBehaviour
             yield return null;
         }
 
+        fedToad.gameObject.GetComponent<Toad1_Score>().score += 0.5f;
         // Trigger the event when the object goes off-screen
         OnReturnToPool?.Invoke(foodTransform.gameObject);
     }
