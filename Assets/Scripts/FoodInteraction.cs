@@ -12,6 +12,9 @@ public class FoodInteraction : MonoBehaviour
     public float throwDuration = 1.0f;
     public KeyCode throwKey = KeyCode.X;
 
+    public delegate void ThrowFoodEventHandler();
+    public event ThrowFoodEventHandler OnThrowFood;
+
     private PlayerController player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,9 +33,22 @@ public class FoodInteraction : MonoBehaviour
             if (Input.GetKey(throwKey))
             {
                 StartCoroutine(ThrowFood());
+
                 isHoldingFood = false;
+
+                TriggerThrowFoodEvent();
             }
         }
+    }
+
+    public void SetHoldingFood(bool holding)
+    {
+        isHoldingFood = holding;
+    }
+
+    public void TriggerThrowFoodEvent()
+    {
+        OnThrowFood?.Invoke();
     }
 
     private IEnumerator ThrowFood()
@@ -50,7 +66,7 @@ public class FoodInteraction : MonoBehaviour
         }
         
         float elapsedTime = 0f;
-        while (elapsedTime < throwDuration)
+        while (elapsedTime < throwDuration && foodTransform != null)
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / throwDuration;
