@@ -56,6 +56,8 @@ public class FoodSpawner : MonoBehaviour
             {
                 float spawnHeight = Random.Range(minSpawnHeight, maxSpawnHeight);
                 food.transform.position = new Vector3(0, spawnHeight, -1);
+                food.GetComponent<FoodMovement>().isHeld = false;
+                food.GetComponent<Collider>().enabled = true;
                 food.SetActive(true);
                 break;
             }

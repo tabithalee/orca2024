@@ -5,7 +5,7 @@ using System.Collections;
 public class FoodMovement : MonoBehaviour
 {
     public float maxHeight = 5f;
-    public float minHeight = -5f;
+    public float minHeight = 2.5f;
     public float speed = 3f;
     public float amplitude = 1.0f;
     public float frequency = 1.0f;
@@ -16,6 +16,7 @@ public class FoodMovement : MonoBehaviour
 
     // Define an event to notify when food should return to the pool
     public event Action<GameObject> OnReturnToPool;
+    public bool isHeld = false;
 
     void OnEnable()
     {
@@ -42,9 +43,12 @@ public class FoodMovement : MonoBehaviour
 
         while (Mathf.Abs(transform.position.x) < screenBoundX)
         {
-            transform.position += new Vector3((movingRight ? 1 : -1) * speed * Time.deltaTime, 0, 0);
-            float newY = startPosition.y + Mathf.Sin(Time.time * frequency) * amplitude;
-            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+            if (!isHeld)
+            {
+                transform.position += new Vector3((movingRight ? 1 : -1) * speed * Time.deltaTime, 0, 0);
+                float newY = startPosition.y + Mathf.Sin(Time.time * frequency) * amplitude;
+                transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+            }
 
             yield return null;
         }

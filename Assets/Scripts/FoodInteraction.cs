@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using UnityEngine;
 
 public class FoodInteraction : MonoBehaviour
@@ -15,6 +16,9 @@ public class FoodInteraction : MonoBehaviour
     public delegate void ThrowFoodEventHandler(string otherName);
     public event ThrowFoodEventHandler OnThrowFood;
 
+    // Define an event to notify when food should return to the pool
+    public event Action<GameObject> OnReturnToPool;
+
     private PlayerController player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,7 +30,7 @@ public class FoodInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isHoldingFood)
+        if (isHoldingFood && foodTransform != null)
         {
             foodTransform.position = player.holdPosition;
 
@@ -34,15 +38,16 @@ public class FoodInteraction : MonoBehaviour
             {
                 StartCoroutine(ThrowFood());
 
-                isHoldingFood = false;
-
                 TriggerThrowFoodEvent();
+                isHoldingFood = false;
             }
         }
     }
 
-    public void SetHoldingFood(bool holding)
+    public void SetHoldingFood(bool holding, Transform food)
     {
+        food.gameObject.GetComponent<FoodMovement>().isHeld = true;
+        foodTransform = food.transform;
         isHoldingFood = holding;
     }
 
@@ -85,7 +90,7 @@ public class FoodInteraction : MonoBehaviour
             yield return null;
         }
 
-        // destroy the food item
-        Destroy(foodTransform.gameObject);
+        // Trigger the event when the object goes off-screen
+        OnReturnToPool?.Invoke(foodTransform.gameObject);
     }
 }
