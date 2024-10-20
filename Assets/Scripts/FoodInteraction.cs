@@ -12,7 +12,7 @@ public class FoodInteraction : MonoBehaviour
     public float throwDuration = 1.0f;
     public KeyCode throwKey = KeyCode.X;
 
-    public delegate void ThrowFoodEventHandler();
+    public delegate void ThrowFoodEventHandler(string otherName);
     public event ThrowFoodEventHandler OnThrowFood;
 
     private PlayerController player;
@@ -48,7 +48,7 @@ public class FoodInteraction : MonoBehaviour
 
     public void TriggerThrowFoodEvent()
     {
-        OnThrowFood?.Invoke();
+        OnThrowFood?.Invoke(player.name);
     }
 
     private IEnumerator ThrowFood()
