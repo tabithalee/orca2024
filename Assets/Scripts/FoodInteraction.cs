@@ -4,7 +4,6 @@ using UnityEngine;
 public class FoodInteraction : MonoBehaviour
 {
     public bool isHoldingFood = false;
-    public PlayerController player;
     public Transform foodTransform;
 
     public Transform toadLeft;
@@ -13,9 +12,12 @@ public class FoodInteraction : MonoBehaviour
     public float throwDuration = 1.0f;
     public KeyCode throwKey = KeyCode.X;
 
+    private PlayerController player;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class FoodInteraction : MonoBehaviour
             if (Input.GetKey(throwKey))
             {
                 StartCoroutine(ThrowFood());
+                isHoldingFood = false;
             }
         }
     }
@@ -66,7 +69,7 @@ public class FoodInteraction : MonoBehaviour
             yield return null;
         }
 
-        // Ensure the object reaches the exact target position at the end
-        foodTransform.position = endPosition;
+        // destroy the food item
+        Destroy(foodTransform.gameObject);
     }
 }
