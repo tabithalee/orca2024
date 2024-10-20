@@ -26,13 +26,13 @@ public class TongueController : MonoBehaviour
         {
             playerFoodController.OnThrowFood += HandleThrowFood;
         }
-        pivot = transform.parent.Find("Pivot");
+        pivot = transform.parent?.Find("Pivot");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!playerFoodController.isHoldingFood)
+        if (playerFoodController != null && !playerFoodController.isHoldingFood)
         {
             if(Input.GetKey(growKey))
             {
@@ -55,8 +55,11 @@ public class TongueController : MonoBehaviour
 
     private void SetAngleZ(float targetAngle)
     {
-        float angle = targetAngle - transform.rotation.eulerAngles.z;
-        transform.RotateAround(pivot.position, Vector3.forward, angle);
+        if (pivot != null)
+        {
+            float angle = targetAngle - transform.rotation.eulerAngles.z;
+            transform.RotateAround(pivot.position, Vector3.forward, angle);
+        }
     }
 
     private void HandleThrowFood()

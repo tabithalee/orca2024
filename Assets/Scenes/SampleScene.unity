@@ -786,12 +786,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3b4a5691dda81448d824bc84fcc732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleRotation: 90
   idleLength: 0.001
   rotationLo: 70
   rotationHi: 110
   rotateSpeed: 1.5
-  minLength: 1
+  minRotateLength: 1
   growRate: 0.005
   shrinkRate: 0.01
   growKey: 99
