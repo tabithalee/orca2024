@@ -19,6 +19,12 @@ public class FoodInteraction : MonoBehaviour
     // Define an event to notify when food should return to the pool
     public event Action<GameObject> OnReturnToPool;
 
+    // Define the delegate (if using non-generic types).
+    public delegate void BridgeMovedEventHandler();
+
+    // Define the event using the delegate.
+    public event BridgeMovedEventHandler OnBridgeMoved;
+
     private PlayerController player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -94,6 +100,9 @@ public class FoodInteraction : MonoBehaviour
         }
 
         fedToad.gameObject.GetComponent<Toad1_Score>().score += 0.5f;
+
+        OnBridgeMoved?.Invoke();
+
         // Trigger the event when the object goes off-screen
         OnReturnToPool?.Invoke(foodTransform.gameObject);
     }

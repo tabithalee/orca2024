@@ -3190,6 +3190,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25a886492fbeabf49b97a4188ae2bea0, type: 3}
+--- !u!4 &768743549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 611245176729523100, guid: f2412ad750ed63e458f586d0c10042ba, type: 3}
+  m_PrefabInstance: {fileID: 2014057471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &777775026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4561,7 +4566,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4572,6 +4577,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12.17, y: 0.35, z: 1}
   m_Center: {x: 0, y: -0.13, z: 0}
+--- !u!4 &1293151333 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6989549807150709767, guid: f2412ad750ed63e458f586d0c10042ba, type: 3}
+  m_PrefabInstance: {fileID: 2014057471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1326940806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6147,7 +6157,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6168,7 +6178,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7358,6 +7368,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1580221679}
     - target: {fileID: 7451503953690918602, guid: 5f327dce54ef7814d91df181516b7de9, type: 3}
+      propertyPath: fudgeFactor
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7451503953690918602, guid: 5f327dce54ef7814d91df181516b7de9, type: 3}
+      propertyPath: toadTopLeft
+      value: 
+      objectReference: {fileID: 1293151333}
+    - target: {fileID: 7451503953690918602, guid: 5f327dce54ef7814d91df181516b7de9, type: 3}
+      propertyPath: toadTopRight
+      value: 
+      objectReference: {fileID: 768743549}
+    - target: {fileID: 7451503953690918602, guid: 5f327dce54ef7814d91df181516b7de9, type: 3}
+      propertyPath: importantToad
+      value: 
+      objectReference: {fileID: 768743549}
+    - target: {fileID: 7451503953690918602, guid: 5f327dce54ef7814d91df181516b7de9, type: 3}
       propertyPath: foodDistanceAboveHead
       value: 3.57
       objectReference: {fileID: 0}
@@ -7450,6 +7476,22 @@ PrefabInstance:
       propertyPath: toadRight
       value: 
       objectReference: {fileID: 1580221679}
+    - target: {fileID: 7083022698654092151, guid: f205d00128500534db0ebceb353fcd8e, type: 3}
+      propertyPath: fudgeFactor
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083022698654092151, guid: f205d00128500534db0ebceb353fcd8e, type: 3}
+      propertyPath: toadTopLeft
+      value: 
+      objectReference: {fileID: 1293151333}
+    - target: {fileID: 7083022698654092151, guid: f205d00128500534db0ebceb353fcd8e, type: 3}
+      propertyPath: toadTopRight
+      value: 
+      objectReference: {fileID: 768743549}
+    - target: {fileID: 7083022698654092151, guid: f205d00128500534db0ebceb353fcd8e, type: 3}
+      propertyPath: importantToad
+      value: 
+      objectReference: {fileID: 1293151333}
     - target: {fileID: 7083022698654092151, guid: f205d00128500534db0ebceb353fcd8e, type: 3}
       propertyPath: foodDistanceAboveHead
       value: 3.57
